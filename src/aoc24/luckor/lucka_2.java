@@ -24,7 +24,7 @@ public class lucka_2 extends Losning {
                 return null;
         }
 
-        return true;
+        return asc;
     }
 
     protected void sammanstall() {

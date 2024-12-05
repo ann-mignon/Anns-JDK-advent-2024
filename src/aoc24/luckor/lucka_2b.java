@@ -19,7 +19,7 @@ public class lucka_2b extends lucka_2 {
 
         for (List<Integer> r : rapporter) {
             acc += IntStream.range(0, r.size())
-                    .mapToObj(ix -> Objects.equals(checker(snip(r, ix)), true))
+                    .mapToObj(ix -> !Objects.equals(checker(snip(r, ix)), null))
                     .toList().stream().anyMatch(s -> s) ? 1 : 0;
         }
 
