@@ -24,19 +24,4 @@ public class Util {
     public static List<Integer> toIntegerList(String[] strings) {
         return Arrays.stream(strings).map(Integer::parseInt).collect(Collectors.toList());
     }
-
-    public static String kaka() {
-        return getProperty("pepparkaka");
-    }
-
-    public static String getProperty(String key) {
-        try (InputStream propFile = AOC.class.getClassLoader().getResourceAsStream("aoc.properties")) {
-            Properties prop = new Properties();
-            prop.load(propFile);
-            return prop.getProperty(key);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

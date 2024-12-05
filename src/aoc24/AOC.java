@@ -7,10 +7,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static aoc24.Util.kaka;
 import static aoc24.Util.putln;
 
 public class AOC {
@@ -58,7 +58,7 @@ public class AOC {
 
     static String hamtaInputWeb(int dag) throws IOException, InterruptedException {
         HttpRequest hr = HttpRequest.newBuilder().uri(URI.create(aocURL.formatted(dag)))
-                .setHeader("Cookie", "session=%s".formatted(kaka()))
+                .setHeader("Cookie", "session=%s".formatted(getProperty("pepparkaka")))
                 .method("GET", HttpRequest.BodyPublishers.noBody()).build();
 
         return HttpClient.newHttpClient().send(hr, HttpResponse.BodyHandlers.ofString()).body();
@@ -73,6 +73,17 @@ public class AOC {
             }
         } catch (Exception x) {
             throw new RuntimeException(String.format("Infilen saknas (%s) %n", sv));
+        }
+    }
+
+    public static String getProperty(String key) {
+        try (InputStream propFile = AOC.class.getClassLoader().getResourceAsStream("aoc.properties")) {
+            Properties prop = new Properties();
+            prop.load(propFile);
+            return prop.getProperty(key);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
