@@ -18,7 +18,7 @@ Lösningsförslag till [Advent of Code 2024](https://adventofcode.com/2024), rol
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;den numeriska delen av parametern `{lucka}`.  
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(dvs, lösningar 5 och 5b använder samma mapp)  
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Parametern är <u>inte tvingande</u>, så om inget filnamn anges läses input från  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Advent of Codes domän: `//adventofcode.com/2024/day/SIFFRA`.  
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Advent of Codes domän: `//adventofcode.com/2024/day/SIFFRA/input`.  
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;För att det ska fungera behöver en giltig session-kaka anges för propertyn  
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;`pepparkaka` i [aoc24.properties](src/aoc24/res/aoc.properties)
 
