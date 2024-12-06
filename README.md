@@ -28,7 +28,7 @@ kor_aoc24 4b test.txt
 
 #### Parametrar: _sökvägar (ej tvingande)_
 `{build.dir}?` = &emsp;målmapp  (./build)  
-`{src.dir}?`  &emsp;= &emsp;källmapp (./src)
+`{src.dir}?`  &emsp;= &emsp;källmapp (./src)  
 `{java.home}?` = &emsp;sökväg java
 
 #### Parametrar: programargument
