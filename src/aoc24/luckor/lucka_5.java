@@ -61,7 +61,6 @@ public class lucka_5 extends Losning {
         sammanstall();
 
         return String.valueOf(Arrays.stream(pglist).filter(this::checker)
-                                    .mapToInt(pl -> pl.get(pl.size()/2))
-                                    .reduce(Integer::sum).getAsInt());
+                                    .mapToInt(pl -> pl.get(pl.size()/2)).sum());
     }
 }

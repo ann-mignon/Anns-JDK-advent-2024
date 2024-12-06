@@ -22,7 +22,7 @@ public class lucka_5b extends lucka_5 {
                     .mapToInt(j -> j).toArray();
         }
 
-        int res = Arrays.stream(nyordning).mapToInt(n -> n[n.length / 2]).reduce(Integer::sum).getAsInt();
+        int res = Arrays.stream(nyordning).mapToInt(n -> n[n.length / 2]).sum();
 
         return String.valueOf(res);
     }
