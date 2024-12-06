@@ -41,8 +41,7 @@ public class AOC {
                     throw new RuntimeException("Ange lucka som 13 / 13b .. ( mönster: \\d{1,2}[a-z]+ )");
                 }
             } catch (Exception e) {
-                System.err.println(e.getClass().getCanonicalName() +
-                        '>' + e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -57,12 +56,18 @@ public class AOC {
     }
 
     static String hamtaInputWeb(int dag) throws IOException, InterruptedException {
-        HttpRequest hr = HttpRequest.newBuilder().uri(URI.create(aocURL.formatted(dag)))
-                .setHeader("Cookie", "session=%s".formatted(getProperty("pepparkaka")))
-                .method("GET", HttpRequest.BodyPublishers.noBody()).build();
+        try {
+            HttpRequest hr = HttpRequest.newBuilder().uri(URI.create(aocURL.formatted(dag)))
+                    .setHeader("Cookie", "session=%s".formatted(getProperty("pepparkaka")))
+                    .method("GET", HttpRequest.BodyPublishers.noBody()).build();
 
-        return HttpClient.newHttpClient().send(hr, HttpResponse.BodyHandlers.ofString()).body();
+            return HttpClient.newHttpClient().send(hr, HttpResponse.BodyHandlers.ofString()).body();
+        } catch ( Exception e ) {
+            throw new RuntimeException("Det gick inte att hämta input automatiskt från domänen.\n" +
+                    "Har du ställt in pepparkaksparametern? ( i /src/aoc24/res/aoc.properties )");
+        }
     }
+
 
     static String hamtaInputFil(int dag, String sv) {
         try (InputStream is = AOC.class.getClassLoader().getResourceAsStream("%d/%s".formatted(dag, sv))) {
