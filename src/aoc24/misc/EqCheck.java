@@ -11,14 +11,13 @@ public class EqCheck {
     final long[] varden;
     final eqOp[] ops;
 
-
     public EqCheck(long toCheck, long[] varden, eqOp[] ops) {
         this.toCheck = toCheck;
         this.varden = varden;
         this.ops = ops;
     }
 
-    eqOp[][] opMap(int len) {
+    public static eqOp[][] opMap(int len, eqOp[] ops) {
         int olen = (int) Math.pow(ops.length, len);
         eqOp[][] proc = new eqOp[olen][len];
 
@@ -30,8 +29,8 @@ public class EqCheck {
         return proc;
     }
 
-    public boolean check() {
-        eqOp[][] opx = opMap(varden.length - 1);
+    public boolean check(eqOp[][][] omap) {
+        eqOp[][] opx = omap[varden.length - 1];
 
         for (eqOp[] o: opx) {
             int oix = 0; long acc = varden[0];

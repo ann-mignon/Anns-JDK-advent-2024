@@ -1,15 +1,18 @@
 package aoc24.luckor;
 
+import aoc24.misc.EqCheck.eqOp;
+
 import java.util.function.LongBinaryOperator;
 
 public class lucka_7b extends lucka_7 {
-    enum nyOps implements aoc24.luckor.misc.EqCheck.eqOp {
+    enum nyOps implements eqOp {
         PROD,
         SUM,
         CONC;
 
         static long foga(long a, long b) {
-            return Long.parseLong("%d%d".formatted(a, b));
+            return Long.parseLong(Long.valueOf(a).toString() +
+                                     Long.valueOf(b).toString());
         }
 
         public LongBinaryOperator getOperator() {
@@ -21,7 +24,6 @@ public class lucka_7b extends lucka_7 {
         }
     }
 
-    @Override
     public String svar() {
         return String.valueOf(check(new nyOps[]{ nyOps.PROD, nyOps.SUM, nyOps.CONC }));
     }
