@@ -1,4 +1,4 @@
-package aoc24.luckor.misc;
+package aoc24.misc;
 
 import java.util.function.LongBinaryOperator;
 
