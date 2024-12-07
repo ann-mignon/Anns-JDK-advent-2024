@@ -15,7 +15,11 @@ public class Util {
     }
 
     public static int[] toIntArray(String[] strings) {
-        return Arrays.stream(strings).map(Integer::parseInt).mapToInt(Integer::valueOf).toArray();
+        return Arrays.stream(strings).mapToInt(Integer::valueOf).toArray();
+    }
+
+    public static long[] toLongArray(String[] strings) {
+        return Arrays.stream(strings).mapToLong(Long::valueOf).toArray();
     }
 
     public static List<Integer> toIntegerList(String[] strings) {
