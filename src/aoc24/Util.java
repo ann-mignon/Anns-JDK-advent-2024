@@ -3,6 +3,8 @@ package aoc24;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Util {
     public static void putln(Object o) {
@@ -18,11 +20,50 @@ public class Util {
         return Arrays.stream(strings).mapToInt(Integer::valueOf).toArray();
     }
 
+    public static IntStream toIntStream(String[] strings) {
+        return Arrays.stream(strings).mapToInt(Integer::valueOf);
+    }
+
     public static long[] toLongArray(String[] strings) {
-        return Arrays.stream(strings).mapToLong(Long::valueOf).toArray();
+        return toLongStream(strings).toArray();
+    }
+
+    public static LongStream toLongStream(String[] strings) {
+        return Arrays.stream(strings).mapToLong(Long::valueOf);
     }
 
     public static List<Integer> toIntegerList(String[] strings) {
         return Arrays.stream(strings).map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    static final long[] _pow10 = {
+      1, 10, 100, 1000, 10000, 100000, 1000000,
+      10000000, 100000000, 1000000000, 10000000000L,
+      100000000000L,  1000000000000L,  10000000000000L,
+      100000000000000L, 1000000000000000L, 10000000000000000L,
+      100000000000000000L, 1000000000000000000L };
+
+    public static long pow10(int n) { return _pow10[n]; }
+
+    /**
+     * Determine number of decimals of a positive int64
+     * <p>
+     * Adapted from an earlier version of the simple and useful
+     * <code>Long.stringSize</code> method found in OpenJDK 8 source.
+     * For anyone curious about this, an evolved version of it is found
+     * in the OpenJDK codebase, link below.
+     * @see <a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/util/DecimalDigits.java#L125">DecimalDigits.java @ Github</a>
+     * </p>
+     * @param n long value (only positive integers)
+     * @return int decimals
+     *
+     */
+    public static int decimals(long n) {
+        long t = 10; int i = 0;
+        while (++i < 19) {
+            if (t > n) return i;
+            t *= 10;
+        }
+        return i;
     }
 }

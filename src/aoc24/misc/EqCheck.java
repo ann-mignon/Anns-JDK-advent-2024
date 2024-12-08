@@ -29,7 +29,7 @@ public class EqCheck {
         return proc;
     }
 
-    public boolean check(eqOp[][][] omap) {
+    public long check(eqOp[][][] omap) {
         eqOp[][] opx = omap[varden.length - 1];
 
         for (eqOp[] o: opx) {
@@ -37,8 +37,8 @@ public class EqCheck {
             do {
                 acc = o[oix].getOperator().applyAsLong(acc, varden[++oix]);
             } while (oix < o.length);
-            if (acc == toCheck) return true;
+            if (acc == toCheck) return toCheck;
         }
-        return false;
+        return 0;
     }
 }

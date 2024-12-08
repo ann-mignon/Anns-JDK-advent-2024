@@ -10,7 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-import static aoc24.Util.splitta;
 import static aoc24.Util.toLongArray;
 
 public class lucka_7 extends Losning {
@@ -40,12 +39,10 @@ public class lucka_7 extends Losning {
         Matcher m = eqrx.matcher(input);
         eqOp[][][] combo = precombine(ops);
 
-        return Arrays.stream(
-                m.results().map(r ->
+        return m.results().mapToLong(r ->
                 new EqCheck(Long.parseLong(r.group(1)),
-                            toLongArray(splitta(r.group(2), " ")),
-                            ops)
-                ).toArray(EqCheck[]::new)).filter(eq -> eq.check(combo)).mapToLong(e -> e.toCheck).sum();
+                        toLongArray(r.group(2).split( " ")),
+                        ops).check(combo)).sum();
     }
 
     final Pattern eqrx = Pattern.compile("^(\\d+): ((?:\\d+ )+\\d+)$", Pattern.MULTILINE);
