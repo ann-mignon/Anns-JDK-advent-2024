@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import static java.lang.Math.multiplyExact;
 
 public class Util {
     public static void putln(Object o) {
@@ -36,6 +37,9 @@ public class Util {
         return Arrays.stream(strings).map(Integer::parseInt).collect(Collectors.toList());
     }
 
+    public static final char[] alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                                          .toCharArray();
+
     static final long[] _pow10 = {
       1, 10, 100, 1000, 10000, 100000, 1000000,
       10000000, 100000000, 1000000000, 10000000000L,
@@ -44,6 +48,18 @@ public class Util {
       100000000000000000L, 1000000000000000000L };
 
     public static long pow10(int n) { return _pow10[n]; }
+
+    public static int bino(int t, int n) throws ArithmeticException {
+        long bino = 1;
+        int i = 1;
+        n = Math.min(n, t - n);
+
+        while (i <= n) {
+            bino = multiplyExact(bino, t + 1 - i) / i++;
+        }
+
+        return (int) bino;
+    }
 
     /**
      * Determine number of decimals of a positive int64
