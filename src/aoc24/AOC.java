@@ -22,10 +22,7 @@ public class AOC {
                 Matcher dpmc = Pattern.compile("(\\d{1,2})([a-z]+)?").matcher(args[0]);
 
                 if (dpmc.find()) {
-                    Class<? extends Losning> losklass =
-                        Class.forName("aoc24.luckor.lucka_%s".formatted(args[0])).asSubclass(Losning.class);
-
-                    Losning losning = losklass.getConstructor().newInstance();
+                    Losning losning = losningById(args[0]);
 
                     int dag = Integer.parseInt(dpmc.group(1));
 
@@ -44,6 +41,14 @@ public class AOC {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    static Losning losningById(String dagId) throws ReflectiveOperationException {
+        Class<? extends Losning> losklass =
+                Class.forName("aoc24.luckor.lucka_%s".formatted(dagId))
+                     .asSubclass(Losning.class);
+
+        return losklass.getConstructor().newInstance();
     }
 
     static void svar(String dag, String svar, String filnamn) {
@@ -68,9 +73,9 @@ public class AOC {
         }
     }
 
-
     static String hamtaInputFil(int dag, String sv) {
-        try (InputStream is = AOC.class.getClassLoader().getResourceAsStream("%d/%s".formatted(dag, sv))) {
+        try (InputStream is = AOC.class.getClassLoader()
+                                       .getResourceAsStream("%d/%s".formatted(dag, sv))) {
             if (is != null) {
                 return new String(is.readAllBytes(), StandardCharsets.UTF_8);
             } else {

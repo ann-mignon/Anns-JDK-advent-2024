@@ -6,6 +6,7 @@ public abstract class Losning {
     protected String input = "";
     protected String[] inputLines;
     protected String linearInput;
+    protected int inputSize;
     protected int len;
     public int wlen;
 
@@ -15,6 +16,7 @@ public abstract class Losning {
         this.linearInput = input.replaceAll("\n", "");
         this.len = inputLines.length;
         this.wlen = inputLines.length > 0 ? inputLines[0].length() : 0;
+        this.inputSize = len * wlen;
     }
 
     public abstract String svar();
