@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static aoc24.Util.splitta;
-import static aoc24.Util.toIntegerList;
+import static aoc24.Util.*;
 
 public class lucka_2 extends Losning {
     static final int TROSKEL = 3;
@@ -27,6 +26,7 @@ public class lucka_2 extends Losning {
         return asc;
     }
 
+    @SuppressWarnings("unchecked")
     protected void sammanstall() {
         rapporter = Arrays.stream(inputLines)
                 .map(l -> toIntegerList(splitta(l, " ")))
