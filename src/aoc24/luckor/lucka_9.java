@@ -10,27 +10,19 @@ import java.util.stream.LongStream;
 public class lucka_9 extends Losning {
 
     int[]  inData;
-    int[]   block;
     int[]   filer;
     int[]   minne;
 
     private void layout() {
-        int p = 0, gp = 0, bi = 0, counter;
-        int[] coll;
+        int p = 0, dp = 0, dec;
         boolean semafor = true;
 
-        while (true) {
-            coll = semafor ? filer: block;
-            if (gp == coll.length) break;
-            counter = coll[gp];
-            while (counter-- > 0) {
-                minne[p++] = semafor ? gp : -1;
+        while (dp < inData.length) {
+            dec = inData[dp];
+            while(dec-- > 0) {
+                minne[p++] = semafor ? dp / 2 : -1;
             }
-            semafor = !semafor;
-            if (++bi == 2) {
-                ++gp;
-                bi = 0;
-            }
+            semafor = !semafor; ++dp;
         }
     }
 
@@ -50,12 +42,9 @@ public class lucka_9 extends Losning {
 
     private void processera() {
         boolean filSist = inData.length % 2 == 1;
-        int flen = inData.length / 2 + (filSist ? 1 : 0);
-        int glen = inData.length / 2;
-
-        block = IntStream.range(0, glen).map(i -> inData[i * 2 + 1]).toArray();
-        filer = IntStream.range(0, flen).map(i -> inData[i * 2]).toArray();
-        minne = new int[Arrays.stream(filer).sum() + Arrays.stream(block).sum()];
+        filer = IntStream.range(0, inData.length / 2 + (filSist ? 1 : 0))
+                         .map(i -> inData[i * 2]).toArray();
+        minne = new int[Arrays.stream(inData).sum()];
 
         layout();
     }
