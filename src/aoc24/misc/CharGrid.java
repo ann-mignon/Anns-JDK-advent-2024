@@ -27,6 +27,10 @@ public class CharGrid {
         return _grid[p.y][p.x];
     }
 
+    public char[] getGridLine(int i) {
+        return _grid[i];
+    }
+
     public int getIx(Point p) {
         return p.y * bredd + p.x;
     }
