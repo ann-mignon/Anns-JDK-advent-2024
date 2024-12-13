@@ -27,6 +27,14 @@ public class CharGrid {
         return _grid[p.y][p.x];
     }
 
+    public Character getCharAt(int x, int y) {
+        return _grid[y][x];
+    }
+
+    public Character getCharAt(int p) {
+        return _grid[p/bredd][p % bredd];
+    }
+
     public char[] getGridLine(int i) {
         return _grid[i];
     }
