@@ -73,7 +73,7 @@ public class AOC {
         }
     }
 
-    static String hamtaInputFil(int dag, String sv) {
+    public static String hamtaInputFil(int dag, String sv) {
         try (InputStream is = AOC.class.getClassLoader()
                                        .getResourceAsStream("%d/%s".formatted(dag, sv))) {
             if (is != null) {
